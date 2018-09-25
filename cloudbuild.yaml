@@ -1,0 +1,19 @@
+steps:
+  - id: 'build-docker-image'
+    name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "--tag=hello-xlr"
+      - "."
+
+  - id: 'tag-image'
+    name: 'gcr.io/$PROJECT_ID/cloud-builders/tagger'
+    env:
+    - SOURCE_IMAGE=hello-xlr
+    - IMAGE_NAME=gcr.io/$PROJECT_ID/apps/hello-xlr
+    - BRANCH_NAME=$BRANCH_NAME
+    - TAG_NAME=$TAG_NAME
+    - TAG_NON_MASTER_BRANCH=1
+    waitFor: ['build-docker-image']
+images:
+  - 'gcr.io/$PROJECT_ID/apps/hello-xlr'
