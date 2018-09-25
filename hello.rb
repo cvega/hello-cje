@@ -29,3 +29,8 @@ get %r{/[Cc]loud[Bb]ees} do
   text = "Hello CloudBees"
   json message: text
 end
+
+get %r{/[Pp]reviet} do
+  text = "Hello in Russian"
+  json message: text
+end

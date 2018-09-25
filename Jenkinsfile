@@ -10,6 +10,16 @@ pipeline {
                           request: file('cloudbuild.yaml'),
                   }
               }
+              stage('Travis-CI') {
+                steps {
+                  echo "Travis would run here"
+                }
+              }
+        }
+        stage('Deploy to stage') {
+          steps {
+            echo "Run the samson webhook"
           }
+        }
     }
 }
