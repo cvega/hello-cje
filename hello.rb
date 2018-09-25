@@ -34,3 +34,8 @@ get %r{/[Pp]reviet} do
   text = "Hello in Russian"
   json message: text
 end
+
+get %r{/[Mm]eow} do
+  text = "Hello from a kitten"
+  json message: text
+end
