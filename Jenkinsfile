@@ -7,7 +7,8 @@ pipeline {
       parallel {
         stage('Google Cloud Build') {
           steps {
-            echo "GCB would be run here"
+            echo "GCB time"
+            gcb()
           }
         }
         stage('Travis-CI') {
