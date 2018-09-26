@@ -28,7 +28,7 @@ pipeline {
         retry(5)
       }
       steps {
-        echo "Run the samson webhook"
+        samsonDeploy()
       }
     }
   }
