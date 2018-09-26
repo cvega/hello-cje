@@ -2,13 +2,17 @@
 
 pipeline {
   agent any
+  parameters {
+    string(name: 'GCB_CREDENTIAL', defaultValue: 'perbranch')
+    string(name: 'GCB_YAML', defaultValue: 'cloudbuild.yaml')
+  }
   stages {
     stage('build') {
       failFast true
       parallel {
         stage('Google Cloud Build') {
           steps {
-            gcb(credentialsId: "perbranch", cloudBuildFile: "cloudbuild.yaml")
+            gcb(credentialsId: "${params.GCB_CREDENTIAL}", cloudBuildFile: ${params.GCB_YAML})
           }
         }
         stage('Travis-CI') {
@@ -25,3 +29,4 @@ pipeline {
     }
   }
 }
+
