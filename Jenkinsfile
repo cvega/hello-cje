@@ -3,7 +3,7 @@
 pipeline {
   agent any
   environment {
-    GCB_CREDENTIALS = credentials('test')
+    GCB_CREDENTIALS = credentials('docker-image-builder-179319')
   }
   stages {
     stage('build') {
