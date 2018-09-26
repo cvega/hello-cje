@@ -3,7 +3,7 @@
 pipeline {
   agent any
   parameters {
-    string(name: 'GCB_CREDENTIAL', defaultValue: 'perbranch')
+    string(name: 'GCB_CREDENTIAL', defaultValue: 'docker-image-builder-179319')
     string(name: 'GCB_YAML', defaultValue: 'cloudbuild.yaml')
   }
   stages {
