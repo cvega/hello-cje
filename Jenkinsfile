@@ -1,24 +1,26 @@
 @Library('zendesk-jenkins') _
 
 pipeline {
-    agent any
-    stages {
-        parallel {
-              stage('Google Cloud Build') {
-                  steps {
-                    echo "GCB would be run here"
-                  }
-              }
-              stage('Travis-CI') {
-                  steps {
-                    echo "Travis would run here"
-                  }
-              }
-        }
-        stage('Deploy to stage') {
+  agent any
+  stages {
+    stage('build') {
+      parallel {
+        stage('Google Cloud Build') {
           steps {
-            echo "Run the samson webhook"
+            echo "GCB would be run here"
           }
         }
+        stage('Travis-CI') {
+          steps {
+            echo "Travis would run here"
+          }
+        }      
+      }
     }
+    stage('Deploy to stage') {
+      steps {
+        echo "Run the samson webhook"
+      }
+    }
+  }
 }
