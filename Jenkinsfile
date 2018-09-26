@@ -1,7 +1,7 @@
 @Library('zendesk-jenkins') _
 
 pipeline {
-    agent none
+    agent any
     stages {
         parallel {
               stage('Google Cloud Build') {
