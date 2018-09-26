@@ -8,7 +8,7 @@ pipeline {
         stage('Google Cloud Build') {
           steps {
             echo "GCB time"
-            gcb()
+            gcb(credentials: "test", source: "test")
           }
         }
         stage('Travis-CI') {
