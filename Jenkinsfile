@@ -2,9 +2,6 @@
 
 pipeline {
   agent any
-  environment {
-    GCB_CREDENTIALS = credentials('perbranch')
-  }
   stages {
     stage('build') {
       parallel {
