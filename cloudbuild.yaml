@@ -1,20 +1,9 @@
 steps:
-  - id: 'build-docker-image'
-    name: "gcr.io/cloud-builders/docker"
+  - id: build-docker-image
+    name: gcr.io/cloud-builders/docker
     args:
-      - "build"
-#      - "--tag=hello-cje"
+      - build
       - "--tag=gcr.io/$PROJECT_ID/apps/hello-cje"
-      - "."
-
-#  - id: 'tag-image'
-#    name: 'gcr.io/$PROJECT_ID/cloud-builders/tagger'
-#    env:
-#    - SOURCE_IMAGE=hello-cje
-#    - IMAGE_NAME=gcr.io/$PROJECT_ID/apps/hello-cje
-#    - BRANCH_NAME=$BRANCH_NAME
-#    - TAG_NAME=$TAG_NAME
-#    - TAG_NON_MASTER_BRANCH=1
-#    waitFor: ['build-docker-image']
+      - .
 images:
-  - 'gcr.io/$PROJECT_ID/apps/hello-cje'
+  - "gcr.io/$PROJECT_ID/apps/hello-cje"
