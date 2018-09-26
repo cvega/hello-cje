@@ -1,0 +1,55 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-cje
+  labels:
+    app: hello-cje
+    project: pipeline-poc
+    role: app-server
+    team: bre
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-cje
+      project: pipeline-poc
+      role: app-server
+  template:
+    metadata:
+      labels:
+        app: hello-cje
+        project: pipeline-poc
+        role: app-server
+        team: bre
+    spec:
+      containers:
+      - name: hello-cje
+        image: gcr.io://docker-image-builder-179319/apps/hello-cje:latest
+        ports:
+          - name: hello-cje
+            containerPort: 8080
+        env:
+          - name: HELLO_PORT
+            value: "8080"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-cje
+  labels:
+    app: hello-cje
+    project: pipeline-poc
+    role: app-server
+    team: bre
+spec:
+  selector:
+    app: hello-cje
+    project: pipeline-poc
+    role: app-server
+  ports:
+    - name: http
+      port: 8080
+      targetPort: hello-cje
+  type: LoadBalancer
