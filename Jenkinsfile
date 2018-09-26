@@ -1,4 +1,5 @@
-@library('zendesk-jenkins') _
+@Library('zendesk-jenkins') _
+
 pipeline {
     agent none
     stages {
