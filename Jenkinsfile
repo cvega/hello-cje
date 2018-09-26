@@ -10,7 +10,6 @@ pipeline {
       parallel {
         stage('Google Cloud Build') {
           steps {
-            echo "GCB time"
             gcb(credentialsId: GCB_CREDENTIALS, source: "test")
           }
         }
