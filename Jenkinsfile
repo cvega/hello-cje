@@ -2,13 +2,16 @@
 
 pipeline {
   agent any
+  environment {
+    GCB_CREDENTIALS = credentials('test')
+  }
   stages {
     stage('build') {
       parallel {
         stage('Google Cloud Build') {
           steps {
             echo "GCB time"
-            gcb(credentialsId: "test", source: "test")
+            gcb(credentialsId: GCB_CREDENTIALS, source: "test")
           }
         }
         stage('Travis-CI') {
