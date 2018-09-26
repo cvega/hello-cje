@@ -7,6 +7,7 @@ pipeline {
   }
   stages {
     stage('build') {
+      failFast true
       parallel {
         stage('Google Cloud Build') {
           steps {
