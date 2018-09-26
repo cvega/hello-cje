@@ -23,6 +23,10 @@ pipeline {
       }
     }
     stage('Deploy to stage') {
+      options {
+        timeout(time: 300, unit: 'SECONDS')
+        retry(5)
+      }
       steps {
         echo "Run the samson webhook"
       }
