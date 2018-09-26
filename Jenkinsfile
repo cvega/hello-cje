@@ -1,19 +1,17 @@
+@library('zendesk-jenkins') _
 pipeline {
     agent none
     stages {
         parallel {
               stage('Google Cloud Build') {
                   steps {
-                      googleCloudBuild \
-                          credentialsId: 'docker-image-builder-179319',
-                          source: local('.'),
-                          request: file('cloudbuild.yaml'),
+                    echo "GCB would be run here"
                   }
               }
               stage('Travis-CI') {
-                steps {
-                  echo "Travis would run here"
-                }
+                  steps {
+                    echo "Travis would run here"
+                  }
               }
         }
         stage('Deploy to stage') {
