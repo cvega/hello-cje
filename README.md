@@ -1,3 +1,3 @@
 # hello-cje
-Hello CloudBees Jenkins Enterprise, Hello Brian
+Hello CloudBees Jenkins Enterprise
 Test line
