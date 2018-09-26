@@ -39,3 +39,8 @@ get %r{/[Mm]eow} do
   text = "Hello from a kitten"
   json message: text
 end
+
+get %r{/[Bb][Rr][Ee]} do
+  text = "Hello BRE"
+  json message: text
+end
