@@ -4,6 +4,7 @@ pipeline {
   agent any
   stages {
     stage('build') {
+      failFast true
       parallel {
         stage('Google Cloud Build') {
           steps {
