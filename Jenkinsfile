@@ -10,11 +10,15 @@ pipeline {
   }
   stages {
     stage('build') {
+      environment {
+        GCB_CREDENTIAL = "${params.GCB_CREDENTIAL}"
+        GCB_YAML = "${params.GCB_YAML}"
+      }
       failFast true
       parallel {
         stage('Google Cloud Build') {
           steps {
-            gcb(credentialsId: "${params.GCB_CREDENTIAL}", cloudBuildFile: "${params.GCB_YAML}")
+            gcb(credentialsId: GCB_CREDENTIAL, cloudBuildFile: GCB_YAML)
           }
         }
         stage('Travis-CI') {
@@ -27,15 +31,14 @@ pipeline {
     stage('Deploy to stage') {
       environment {
         SAMSON_TOKEN = credentials("${params.SAMSON_PERSONAL_ACCESS_TOKEN}")
+        SAMSON_WEBHOOK = "${params.SAMSON_GENERAL_WEBHOOK_ID}"
       }
       options {
         timeout(time: 300, unit: 'SECONDS')
-        retry(5)
       }
       steps {
-        samsonDeploy(webhook_id: SAMSON_GENERAL_WEBHOOK_ID, token: SAMSON_TOKEN)
+        samsonDeploy(webhook: SAMSON_WEBHOOK, token: SAMSON_TOKEN)
       }
     }
   }
 }
-
