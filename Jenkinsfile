@@ -22,14 +22,14 @@ pipeline {
             googleCloudBuilder(credentialsId: GCB_CREDENTIAL, cloudBuildFile: GCB_YAML)
           }
         }
-        stage('Travis-CI') {
+        stage('Travis CI') {
           steps {
             echo "Travis would run here"
           }
         }      
       }
     }
-    stage('Deploy to stage') {
+    stage('Deploy to stage with Samson') {
       environment {
         SAMSON_HOST = "${params.SAMSON_HOST}"
         SAMSON_TOKEN = credentials("${params.SAMSON_PERSONAL_ACCESS_TOKEN}")
