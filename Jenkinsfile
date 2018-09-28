@@ -18,7 +18,7 @@ pipeline {
       parallel {
         stage('Google Cloud Build') {
           steps {
-            gcb(credentialsId: GCB_CREDENTIAL, cloudBuildFile: GCB_YAML)
+            googleCloudBuild(credentialsId: GCB_CREDENTIAL, cloudBuildFile: GCB_YAML)
           }
         }
         stage('Travis-CI') {
