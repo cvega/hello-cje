@@ -5,8 +5,9 @@ pipeline {
   parameters {
     string(name: 'GCB_CREDENTIAL', defaultValue: 'docker-image-builder-179319')
     string(name: 'GCB_YAML', defaultValue: 'cloudbuild.yaml')
-    string(name: 'SAMSON_PERSONAL_ACCESS_TOKEN', defaultValue: 'samson-pat-bcolfer')
+    string(name: 'SAMSON_HOST', defaultValue: 'samson.zd-mini.com')
     string(name: 'SAMSON_GENERAL_WEBHOOK_ID', defaultValue: '969e5269659eecb1041010f28f28c131')
+    string(name: 'SAMSON_PERSONAL_ACCESS_TOKEN', defaultValue: 'samson-pat-bcolfer')
   }
   stages {
     stage('build') {
@@ -30,6 +31,7 @@ pipeline {
     }
     stage('Deploy to stage') {
       environment {
+        SAMSON_HOST = "${params.SAMSON_HOST}"
         SAMSON_TOKEN = credentials("${params.SAMSON_PERSONAL_ACCESS_TOKEN}")
         SAMSON_WEBHOOK = "${params.SAMSON_GENERAL_WEBHOOK_ID}"
       }
@@ -37,7 +39,7 @@ pipeline {
         timeout(time: 300, unit: 'SECONDS')
       }
       steps {
-        samsonDeploy(webhook: SAMSON_WEBHOOK, token: SAMSON_TOKEN)
+        samsonDeploy(host: SAMSON_HOST, token: SAMSON_TOKEN, webhook: SAMSON_WEBHOOK,)
       }
     }
   }
