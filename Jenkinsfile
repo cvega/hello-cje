@@ -31,6 +31,7 @@ pipeline {
     }
     stage('Deploy to stage with Samson') {
       environment {
+        GITHUB_REPO = sh(returnStdout: true, script: "basename ${GIT_URL} .git").trim()
         SAMSON_HOST = "${params.SAMSON_HOST}"
         SAMSON_TOKEN = credentials("${params.SAMSON_PERSONAL_ACCESS_TOKEN}")
         SAMSON_WEBHOOK = "${params.SAMSON_GENERAL_WEBHOOK_ID}"
@@ -39,7 +40,7 @@ pipeline {
         timeout(time: 300, unit: 'SECONDS')
       }
       steps {
-        samsonDeploy(host: SAMSON_HOST, token: SAMSON_TOKEN, webhook: SAMSON_WEBHOOK,)
+        samsonDeploy(host: SAMSON_HOST, token: SAMSON_TOKEN, webhook: SAMSON_WEBHOOK, repo: GITHUB_REPO)
       }
     }
   }
