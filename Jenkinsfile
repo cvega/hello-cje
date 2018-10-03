@@ -25,7 +25,10 @@ pipeline {
         stage('Travis CI') {
           agent { label 'travis' }
           steps {
-            container('travis-job') {}
+            container('travis-job') {
+              sh "/app/app"
+              }
+            }
           }
         }      
       }
