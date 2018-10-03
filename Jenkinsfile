@@ -26,11 +26,11 @@ pipeline {
           agent { label 'travis' }
           steps {
             container('travis-job') {
-              sh "/app/app"
+              sh '/app/app'
               }
             }
           }
-        }      
+        }
       }
     }
     stage('Deploy to stage with Samson') {
