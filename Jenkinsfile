@@ -26,7 +26,7 @@ pipeline {
           steps {
             echo "Run Travis here"
             container('travis-job') {
-              sh '/app/app'
+              sh 'echo "hello from travis-job" ; /app/app'
             }
           }
         }      
