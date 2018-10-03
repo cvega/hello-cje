@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 2.5.1
+cache:
+  bundler: true
+branches:
+  only: master
+script: bundle exec rspec spec/api_tests/test_hello.rb
+
