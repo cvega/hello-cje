@@ -23,7 +23,7 @@ pipeline {
           }
         }
         stage('Travis CI') {
-          agent { node 'travis-enabled-agent'}
+          agent { label 'travis' }
           steps {
             container('travis-job') {}
           }
