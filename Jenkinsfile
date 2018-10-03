@@ -23,14 +23,14 @@ pipeline {
           }
         }
         stage('Travis CI') {
-          agent { label 'travis' }
+          agent{ label 'travis' }
           steps {
+            echo "Travis would run here"
             container('travis-job') {
               sh '/app/app'
-              }
             }
           }
-        }
+        }      
       }
     }
     stage('Deploy to stage with Samson') {
@@ -46,12 +46,6 @@ pipeline {
       steps {
         samsonDeploy(host: SAMSON_HOST, token: SAMSON_TOKEN, webhook: SAMSON_WEBHOOK, repo: GITHUB_REPO)
       }
-    }
-    stage('Run integration test') {
-      steps {
-        sh "echo Run integraations tests here"
-      }
-
     }
   }
   post { 
