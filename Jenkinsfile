@@ -45,9 +45,10 @@ pipeline {
       }
     }
     stage('Run integration test') {
-      environment {
-
+      steps {
+        sh "echo Run integraations tests here"
       }
+
     }
   }
   post { 
