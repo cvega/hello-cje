@@ -25,7 +25,6 @@ pipeline {
         stage('Travis CI') {
           agent{ label 'travis' }
           steps {
-            echo "Travis would run here"
             container('travis-job') {
               sh '/app/app'
             }
