@@ -27,7 +27,6 @@ pipeline {
         stage('Travis CI') {
           steps {
             container('travis-job') {
-              #sh '/app/app'
               sh 'echo "From travis-job"'
             }
           }
