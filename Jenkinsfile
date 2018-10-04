@@ -25,6 +25,14 @@ pipeline {
           }
         }
         stage('Travis CI') {
+          environment {
+            BRANCH = "master"
+            REPO_OWNER = "zendesk"
+            REPO_NAME = sh(returnStdout: true, script: "basename ${GIT_URL} .git").trim()
+            TRAVIS_TLD = "com"
+            TRAVIS_TOKEN = credentials('travis-credentials')
+            POLL_INTERVAL = "20"
+          }
           steps {
             container('travis-job') {
               sh "/app/app"
