@@ -27,6 +27,7 @@ pipeline {
         stage('Travis CI') {
           steps {
             container('travis-job') {
+              sh "/app/app"
             }
           }
         }      
