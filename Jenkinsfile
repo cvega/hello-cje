@@ -28,6 +28,7 @@ pipeline {
           steps {
             container('travis-job') {
               sh 'echo "From travis-job"'
+              sh 'ls -l /app'
             }
           }
         }      
