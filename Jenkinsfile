@@ -1,7 +1,9 @@
 @Library('zendesk-jenkins') _
 
 pipeline {
-  agent { label 'travis' }
+  agent {
+      label 'travis'
+  }
   parameters {
     string(name: 'GCB_CREDENTIAL', defaultValue: 'docker-image-builder-179319')
     string(name: 'GCB_YAML', defaultValue: 'cloudbuild.yaml')
@@ -24,10 +26,8 @@ pipeline {
         }
         stage('Travis CI') {
           steps {
-            echo "Run Travis here"
             container('travis-job') {
-              echo "hello from travis-job"
-              sh '/app/app'
+              sh 'echo "hello from travis-job"; /app/app'
             }
           }
         }      
