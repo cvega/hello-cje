@@ -57,7 +57,9 @@ pipeline {
     }
     stage('Call staging tests') {
       steps {
-        sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+        container('travis-job') {
+          sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+        }
       }
     }
   }
