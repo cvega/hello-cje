@@ -55,11 +55,13 @@ pipeline {
         samsonDeploy(host: SAMSON_HOST, token: SAMSON_TOKEN, webhook: SAMSON_WEBHOOK, repo: GITHUB_REPO)
       }
     }
+    /**
     stage('Call staging tests') {
       steps {
          sh "echo 'This would call: curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test'"
       }
     }
+    */
   }
   post { 
     success { 
