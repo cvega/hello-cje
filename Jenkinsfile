@@ -58,7 +58,7 @@ pipeline {
     stage('Call staging tests') {
       steps {
         container('curl') {
-          sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+          sh "curl http://jenkins.zd-mini.com/job/hello-test/build?token=hello-test"
         }
       }
     }
