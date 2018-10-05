@@ -56,7 +56,9 @@ pipeline {
       }
     }
     stage('Call staging tests') {
-      sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+      steps {
+        sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+      }
     }
   }
   post { 
