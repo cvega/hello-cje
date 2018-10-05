@@ -57,7 +57,9 @@ pipeline {
     }
     stage('Call staging tests') {
       steps {
-         sh "echo 'This would call: curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test'"
+        containter('curl') {
+          sh "curl http://jenkis.zd-mini.com/job/hello-test/build?token=hello-test"
+        }
       }
     }
   }
